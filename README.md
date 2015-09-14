@@ -2,11 +2,31 @@
 
 Public trusted images available on:
 
-* [Docker Hub](https://registry.hub.docker.com/u/dlecan/rust-armhf/)
+* [Docker Hub](https://registry.hub.docker.com/u/dlecan/rust-cross-armhf/)
 
-This repository is used to build a Docker image for the Rust programming language and a few supporting tools. The image includes `rustc`, `rustdoc`, `cargo`, `git`, SSL certificates, and build essentials, so it should be able to run `cargo build` on most projects out of the box. The path `/source` is a volume where you can mount a Cargo project from the host machine.
+This repository is used to build a Docker image based on Ubuntu for the Rust programming language for i686, x86_64 and armhf (eg. : Raspberry Pi) architectures and a few supporting tools. The image includes :
+- `rustc`
+- `rustdoc`
+- `cargo`
+- `git`
+- SSL certificates
+- build essentials
+- Linaro cross compiler for ARMHF
 
-Unlike upstream project, this image is based on Ubuntu and arm toolchain is installed in order to allow cross-compilation of Rust code on ARMHF architecture (eg. Raspberry PI).
+So it should be able to run `cargo build` on most projects out of the box. The path `/source` is a volume where you can mount a Cargo project from the host machine.
+
+## Why ?
+
+To setup a full cross-compiling environment is hard. You need (thanks to https://github.com/japaric/ruststrap/blob/master/1-how-to-cross-compile.md):
+- a build toolchain for armhf architecture : not available on Debian, but easy to install on Ubuntu
+- a Rust compiler for armhf architecture : no binaries are available, so you need to compile it from sources
+- to tell Cargo how to cross compile
+- to configure your packet manager to handle `armhf` packages : available through [http://ports.ubuntu.com/](http://ports.ubuntu.com/)
+- to install developpement libraries for armhf architecture (and not for i686 or x86_64)
+
+After that, if you succeed (Linaro compiler is boggus on Ubuntu Trusty), your workstation will be a real mess.
+
+So I created this Docker image to Rust cross-compilation on armhf as simple as: `cargo-arm build`
 
 ## Usage
 
