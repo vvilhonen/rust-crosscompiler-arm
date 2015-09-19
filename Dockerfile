@@ -3,10 +3,8 @@ MAINTAINER Damien Lecan <dev@dlecan.com>
 
 ENV USER root
 ENV RUST_VERSION 1.2.0
-ENV CC arm-linux-gnueabihf-gcc
+ENV CC arm-linux-gnueabihf-gcc-with-link-search
 ENV PATH /opt/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin:$PATH
-# Plus nécessaire ?
-ENV CFLAGS -I/usr/include -I/usr/include/arm-linux-gnueabihf
 
 COPY include/sources.list /etc/apt/
 COPY include/sources-armhf.list /etc/apt/sources.list.d/
@@ -19,9 +17,7 @@ RUN dpkg --add-architecture armhf && \
     build-essential \
     ca-certificates \
     curl \
-    git \
-    libssl-dev \
-    libssl-dev:armhf && \
+    git && \
   curl -s https://static.rust-lang.org/dist/rust-$RUST_VERSION-x86_64-unknown-linux-gnu.tar.gz \
   | tar -xz && \
   ./rust-$RUST_VERSION-x86_64-unknown-linux-gnu/install.sh --without=rust-docs && \
