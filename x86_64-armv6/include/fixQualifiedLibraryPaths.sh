@@ -28,8 +28,10 @@ function adjustSymLinks
     newPath=$(file $i | sed -e "s/.*\`\(.*\)'/\1/g" | sed -e "s,\`,,g" | sed -e "s,',,g" | sed -e "s,^/lib,$2/lib,g");
     echo $i
     echo $newPath;
-    sudo rm $i;
-    sudo ln -s $newPath $i;
+    #sudo rm $i;
+    rm $i;
+    #sudo ln -s $newPath $i;
+    ln -s $newPath $i;
     fi
     done
 }
