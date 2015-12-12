@@ -2,7 +2,7 @@ FROM debian:jessie
 MAINTAINER Damien Lecan <dev@dlecan.com>
 
 #ENV USER root
-ENV RUST_VERSION 1.4.0
+ENV RUST_VERSION 1.5.0
 
 ENV CC_DIR /opt/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin
 ENV REAL_CC $CC_DIR/arm-linux-gnueabihf-gcc
@@ -22,7 +22,7 @@ RUN mv /tmp/.cargo $HOME && \
     ca-certificates \
     file \
     curl && \
-  curl -sSL https://github.com/dlecan/rust-armv6-dependencies/raw/master/rust-$RUST_VERSION-x86_64-unknown-linux-gnu-arm-unknown-linux-gnueabihf.tar.gz \
+  curl -sSL https://github.com/dlecan/rust-armv6-dependencies/raw/master/rust-$RUST_VERSION-arm-unknown-linux-gnueabihf.tar.gz \
   | tar -xzC /usr/local/ --strip=1 && \
   curl -sSL https://github.com/raspberrypi/tools/archive/master.tar.gz \
   | tar -zxC /opt tools-master/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64 --strip=2 && \

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-RUST_VERSION=1.4.0
+RUST_VERSION=1.5.0
 
 docker build -t dlecan/rust-x86_64-armv6 rust-x86_64-armv6
 
