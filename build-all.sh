@@ -1,10 +1,15 @@
 #!/bin/bash
 
+USERNAME=dlecan
+IMAGE_PATH=rust-crosscompiler-armv6
+IMAGE_NAME=$IMAGE_PATH
+IMAGE=$USERNAME/$IMAGE_NAME
+
+RUST_CHANNEL=stable
 RUST_VERSION=1.6.0
 
-docker build -t dlecan/rust-x86_64-armv6 rust-x86_64-armv6
+docker build -t $IMAGE:$RUST_VERSION $IMAGE_PATH
 
-docker tag -f dlecan/rust-x86_64-armv6:latest dlecan/rust-x86_64-armv6:$RUST_VERSION
-docker tag -f dlecan/rust-x86_64-armv6:latest dlecan/rust-x86_64-armv6:stable
+docker tag -f $IMAGE:$RUST_VERSION $IMAGE:$RUST_CHANNEL
 
-docker push dlecan/rust-x86_64-armv6
+docker push $IMAGE
