@@ -45,4 +45,4 @@ VOLUME ["/root/.cargo/git", "/root/.cargo/registry"]
 VOLUME ["/source"]
 WORKDIR /source
 
-CMD ["cargo build --release"]
+CMD ["cargo", "build", "--release"]
