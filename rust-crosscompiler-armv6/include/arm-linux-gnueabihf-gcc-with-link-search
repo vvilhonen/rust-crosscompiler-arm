@@ -1,8 +1,8 @@
 #!/bin/bash
 
 arm-linux-gnueabihf-gcc \
-        -I/opt/rpi-fs/usr/include/arm-linux-gnueabihf \
-        -I/opt/rpi-fs/usr/include \
+        -isystem/opt/rpi-fs/usr/include/arm-linux-gnueabihf \
+        -isystem/opt/rpi-fs/usr/include \
         -L/opt/rpi-fs/usr/lib/arm-linux-gnueabihf \
         -L/opt/rpi-fs/usr/lib \
         $@
