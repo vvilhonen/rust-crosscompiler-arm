@@ -1,3 +1,3 @@
 #!/bin/bash
 
-/usr/local/bin/cargo $@ --target=arm-unknown-linux-gnueabihf
+/root/.cargo/bin/cargo $@ --target=arm-unknown-linux-gnueabihf

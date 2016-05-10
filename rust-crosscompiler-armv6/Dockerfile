@@ -2,12 +2,12 @@ FROM debian:jessie
 MAINTAINER Damien Lecan <dev@dlecan.com>
 
 #ENV USER root
-ENV RUST_VERSION 1.6.0
+ENV CHANNEL stable
 
 ENV CC_DIR /opt/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin
 ENV REAL_CC $CC_DIR/arm-linux-gnueabihf-gcc
 ENV CC arm-linux-gnueabihf-gcc-with-link-search
-ENV PATH $CC_DIR:$PATH
+ENV PATH $CC_DIR:$PATH:/root/.cargo/bin
 ENV ROOT_FS /opt/rpi-fs
 
 COPY include/config /tmp/.cargo/
@@ -22,8 +22,9 @@ RUN mv /tmp/.cargo $HOME && \
     ca-certificates \
     file \
     curl && \
-  curl -sSL https://github.com/dlecan/rust-armv6-dependencies/raw/master/rust-$RUST_VERSION-arm-unknown-linux-gnueabihf.tar.gz \
-  | tar -xzC /usr/local/ --strip=1 && \
+  curl https://sh.rustup.rs -sSf | sh /dev/stdin -y && \
+  PATH=$PATH:$HOME/.cargo/bin && \
+  rustup target add arm-unknown-linux-gnueabihf && \
   curl -sSL https://github.com/raspberrypi/tools/archive/master.tar.gz \
   | tar -zxC /opt tools-master/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64 --strip=2 && \
   mkdir -p $ROOT_FS && \
