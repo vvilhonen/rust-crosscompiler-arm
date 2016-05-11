@@ -1,3 +1,1 @@
-deb [arch=armhf] http://ports.ubuntu.com/ vivid main restricted universe multiverse
-deb [arch=armhf] http://ports.ubuntu.com/ vivid-updates main restricted universe multiverse
-deb [arch=armhf] http://ports.ubuntu.com/ vivid-security main restricted universe multiverse
+deb [arch=armhf] http://mirrordirector.raspbian.org/raspbian/ jessie main contrib non-free rpi

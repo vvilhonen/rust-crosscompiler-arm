@@ -1,9 +1,9 @@
 #!/bin/bash
 
 arm-linux-gnueabihf-gcc \
-        -isystem/opt/rpi-fs/usr/include/arm-linux-gnueabihf \
-        -isystem/opt/rpi-fs/usr/include \
-        -L/opt/rpi-fs/usr/lib/arm-linux-gnueabihf \
-        -L/opt/rpi-fs/usr/lib \
+        -isystem/usr/include/arm-linux-gnueabihf \
+        -isystem/usr/include \
+        -L/usr/lib/arm-linux-gnueabihf \
+        -L/usr/lib \
         $@
 
