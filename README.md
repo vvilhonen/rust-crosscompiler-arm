@@ -2,9 +2,9 @@
 
 Public trusted images available on:
 
-* [Docker Hub](https://registry.hub.docker.com/u/dlecan/rust-crosscompiler-armv6/)
+* [Docker Hub](https://registry.hub.docker.com/u/dlecan/rust-crosscompiler-arm/)
 
-This repository is used to build a Docker image based on Debian for the Rust programming language for armv6 (eg. : all models of Raspberry Pi) architectures and a few supporting tools. The image includes :
+This repository is used to build a Docker image based on Debian for the Rust programming language for arm (eg. : all models of Raspberry Pi) architectures and a few supporting tools. The image includes :
 - `rustc`
 - `rustdoc`
 - `cargo`
@@ -12,7 +12,7 @@ This repository is used to build a Docker image based on Debian for the Rust pro
 - SSL certificates
 - build essentials
 - Linaro cross compiler
-- many libraries compiled for armv6
+- many libraries compiled for arm
 
 So it should be able to run `cargo build` on most projects out of the box. The path `/source` is a volume where you can mount a Cargo project from the host machine.
 
@@ -22,12 +22,12 @@ To setup a full cross-compiling environment is complicated. You need:
 - a build toolchain for armhf architecture : not available on Debian, but easy to install on Ubuntu
 - a Rust compiler for armhf architecture : no binaries are available, so you need to compile it from sources
 - to tell Cargo how to cross compile
-- many development libraries (headers + lib) such as openssl, compiled for armv6 architecture
+- many development libraries (headers + lib) such as openssl, compiled for arm architecture
 - ...
 
 After that, if you succeed, your workstation will be a real mess.
 
-So I created this Docker image dedicated to Rust cross-compilation on armv6.
+So I created this Docker image dedicated to Rust cross-compilation on arm.
 
 ## Usage
 
@@ -36,7 +36,7 @@ The following command will run `cargo build --release` with the current director
 ```bash
 docker run -it --rm \
   -v $(pwd):/source \
-  dlecan/rust-crosscompiler-armv6:stable
+  dlecan/rust-crosscompiler-arm:stable
 ```
 
 **Rust 'target' architecture is forced to `arm-unknown-linux-gnueabihf` within the container** (parameter `target=arm-unknown-linux-gnueabihf` automatically added).
@@ -47,7 +47,7 @@ For example, to display Cargo version:
 ```bash
 docker run -it --rm \
   -v $(pwd):/source \
-  dlecan/rust-crosscompiler-armv6:stable \
+  dlecan/rust-crosscompiler-arm:stable \
   cargo --version
 ```
 
@@ -63,7 +63,7 @@ docker run -it --rm \
   -v $(pwd):/source \
   -v ~/.cargo/git:/root/.cargo/git \
   -v ~/.cargo/registry:/root/.cargo/registry \
-  dlecan/rust-crosscompiler-armv6:stable
+  dlecan/rust-crosscompiler-arm:stable
 ```
 
 This will cache and share sources of Cargo dependencies and Rust built librairies. It assumes that your Cargo configuration is located in `~/.cargo`.
@@ -79,7 +79,7 @@ docker run -it --rm \
   -v $(pwd):/source \
   -v ~/.cargo/git:/root/.cargo/git \
   -v ~/.cargo/registry:/root/.cargo/registry \
-  dlecan/rust-crosscompiler-armv6:stable "$@"
+  dlecan/rust-crosscompiler-arm:stable "$@"
 
 sudo chown -R `stat -c %u:%g $HOME` $(pwd) ~/.cargo
 ```
