@@ -5,5 +5,5 @@ services:
 
 script:
   - docker build -t dlecan/rust-crosscompiler-arm:stable rust-crosscompiler-armv6
-  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   - docker push dlecan/rust-crosscompiler-arm:stable
