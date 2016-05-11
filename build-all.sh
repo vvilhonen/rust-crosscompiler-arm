@@ -1,15 +1,12 @@
 #!/bin/bash
 
 USERNAME=dlecan
-IMAGE_PATH=rust-crosscompiler-armv
+IMAGE_PATH=arm
 IMAGE_NAME=$IMAGE_PATH
-IMAGE=$USERNAME/$IMAGE_NAME
+IMAGE=$USERNAME/rust-crosscompiler-arm
 
 RUST_CHANNEL=stable
-RUST_VERSION=1.6.0
 
-docker build -t $IMAGE:$RUST_VERSION $IMAGE_PATH
-
-docker tag -f $IMAGE:$RUST_VERSION $IMAGE:$RUST_CHANNEL
+docker build -t $IMAGE:$RUST_CHANNEL $IMAGE_PATH
 
 docker push $IMAGE
