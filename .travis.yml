@@ -4,4 +4,4 @@ services:
   - docker
 
 script:
-  - docker build -t dlecan/rust-crosscompiler-armv6:stable rust-crosscompiler-armv6
+  - docker build -t dlecan/rust-crosscompiler-arm:stable rust-crosscompiler-armv6

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 USERNAME=dlecan
-IMAGE_PATH=rust-crosscompiler-armv6
+IMAGE_PATH=rust-crosscompiler-armv
 IMAGE_NAME=$IMAGE_PATH
 IMAGE=$USERNAME/$IMAGE_NAME
 
