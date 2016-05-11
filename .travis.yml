@@ -3,7 +3,16 @@ sudo: required
 services:
   - docker
 
+env:
+  global:
+    - secure: keG8EtuAMzZy1sLKyzHcWNvup+DjHIz4fbZRmR9tyHp1XUdq/yTAgS2ZP193mtoU6HqaRJDsOg3eOD66JnSLuotknJPLBuRx8iBGQ6dxzXCTTgIOQC2dMMrW3xwRIgPfOH9UloE/CDcMiEhO10zgllzadcP1zf9DAcm3b1P4amESprjWCzlCz7AyKeAJSQTrafl74wIu5zWJWGBQzQ44+U3SizjTdfqzlEXRtNIMlehzgAPAjfnkO1COeaUNoztPhC6U62I6pm8ZyuQbNPb4tno50V/+v+p0WcNcEz3ksooxDdMc6eDi6ftk2zmjkXgt6Ux8U4oZBWGL15G40xr6hRSBMonDQX/z4ZK7w5X67rb7SwD2k8KC8xueWNs+yManzZODGjhIIsZpAK3Wc+an8ELNJZpKHtyeoTMjFSV8azi6hAAX//C0ElLajmYhkTDUFhGsC2mNyaQ2IVOYRiJU1A0/xkyFwh+CvURBpzNZRkTIW0fDrL/5ntTclhdLW8ab0iKEnDxhUZ6zdy91XWsO0F3DS4fGZT0SnZGoiM+Z7GbmO3yTg/VQufehiBEDBglZWDrcrxaKT42FS8lO0FbX+/cOpAbGYtSD+0ZlFjCOIyO9DWbvqPcZJBGygiJhtLhjbvYXTltfTMgvWSY+mVE3FwizbR4SlMLkr0mQ3+HJGyk= #DOCKER_USER
+    - secure: HpzsGMRkoou3u0BI6dCkM06Tashgq9H/h7VnGpfUOkY+wHdEYWH/m4twfRmGyjCDflTqZtvwSTSJFnwGaygWe+pm+mfDSiS0OZ0agKSZEyuwqwq28X0/pC6F4Hp8/sjLauwOm8dRvIK99k1TiNTSfPpEQF9n7fRUdRqdi4Gwp8uqlQak4a9I4FflNtOyu5huiQ0DCuBJ60OxHG1kyx465lZgMryc32dYm6Bp3aqXOTxpe/lzgZbte+cG3jV9NeatxPjK6rxFaG920AIf/QUpQ7SPlYsXuEjfUKjB88Z5fl91wYDRypPoEMpKtyfvlF1LhzmAQ9isurUccW4vVkqKIXZi49GqOABp2Pg/pHpuuJfzxp/cOv4X90A2VhhOTi1ZABjNjiiUqMM1zKeOdetV4+o1RO0I7egGU+x0l+Ii1KKYPZGv80mPcoWbML/BvNdpWYtHdIfNe0wBxB0OQpNg529lKtcq2khJ8hy3fSy69pwJ49DufSp9F+fwpdk1/hKKaFkIJaX2ZG+Dv1RiWWtrTtunVRwmQRRdYSRduBgXp7dh2djLsXBYvI/agpYypApzhO5D1hgaiWJLt+NrmwPhFWuKsVdY0jItdCogGupTLb+mJymA4UXW2VNDOjt+ySwPcla5pP4IZW15WpohBoW/q4vULpXzx8HjSR2nz5W8y/w= #DOCKER_PASSWORD
+    - COMMIT=${TRAVIS_COMMIT::8}
+
+
 script:
   - docker build -t dlecan/rust-crosscompiler-arm:stable rust-crosscompiler-armv6
-  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-  - docker push dlecan/rust-crosscompiler-arm:stable
+
+after_success:
+  - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+  - docker push dlecan/rust-crosscompiler-arm
