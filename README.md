@@ -1,4 +1,6 @@
-# docker-rust
+# Docker image for Rust crosscompilation dedicated to ARM architectures v6 and more
+
+    Keywords: rust arm raspberrypi crosscompilation docker armv6 armv7
 
 Public trusted images available on:
 
