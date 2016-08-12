@@ -18,6 +18,14 @@ This repository is used to build a Docker image based on Debian for the Rust pro
 
 So it should be able to run `cargo build` on most projects out of the box. The path `/source` is a volume where you can mount a Cargo project from the host machine.
 
+Docker image is automatically build and published once a week, so this "stable" rust compiler it is always update-to-date with the official one.
+
+## Sample
+
+You can see this Docker image in action in this project: https://github.com/dlecan/generic-dns-update
+
+Look at Travis build scripts.
+
 ## Why ?
 
 To setup a full cross-compiling environment is complicated. You need:
