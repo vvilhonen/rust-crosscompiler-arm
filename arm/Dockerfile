@@ -7,11 +7,13 @@ ENV CHANNEL stable
 ENV CC_DIR /opt/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin
 ENV REAL_CC $CC_DIR/arm-linux-gnueabihf-gcc
 ENV CC arm-linux-gnueabihf-gcc-with-link-search
+ENV CXX arm-linux-gnueabihf-g++-with-link-search
 ENV PATH $CC_DIR:$PATH:/root/.cargo/bin
 ENV ROOT_FS /
 
 COPY include/config /tmp/.cargo/
 COPY include/arm-linux-gnueabihf-gcc-with-link-search /usr/local/sbin/
+COPY include/arm-linux-gnueabihf-g++-with-link-search /usr/local/sbin/
 COPY include/fixQualifiedLibraryPaths.sh /usr/local/sbin/
 COPY include/cargo /usr/local/sbin/
 COPY include/sources.list /etc/apt/
