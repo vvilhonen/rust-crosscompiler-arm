@@ -27,6 +27,7 @@ RUN mv /tmp/.cargo $HOME && \
     build-essential \
     ca-certificates \
     file \
+    pkg-config \
     curl \
     libssl-dev \
     libssl-dev:armhf && \
