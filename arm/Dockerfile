@@ -2,7 +2,7 @@ FROM debian:jessie
 MAINTAINER Damien Lecan <dev@dlecan.com>
 
 #ENV USER root
-ENV CHANNEL stable
+ENV TOOLCHAIN_VERSION nightly-2017-12-21
 
 ENV CC_DIR /opt/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin
 ENV REAL_CC $CC_DIR/arm-linux-gnueabihf-gcc
@@ -31,7 +31,7 @@ RUN mv /tmp/.cargo $HOME && \
     curl \
     libssl-dev \
     libssl-dev:armhf && \
-  curl https://sh.rustup.rs -sSf | sh /dev/stdin -y && \
+  curl https://sh.rustup.rs -sSf | sh /dev/stdin -y --default-toolchain="$TOOLCHAIN_VERSION" && \
   PATH=$PATH:$HOME/.cargo/bin && \
   rustup target add arm-unknown-linux-gnueabihf && \
   curl -sSL https://github.com/raspberrypi/tools/archive/master.tar.gz \
