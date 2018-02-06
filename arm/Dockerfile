@@ -2,7 +2,7 @@ FROM debian:jessie
 MAINTAINER Damien Lecan <dev@dlecan.com>
 
 #ENV USER root
-ENV TOOLCHAIN_VERSION nightly-2017-12-21
+ENV TOOLCHAIN_VERSION nightly
 
 ENV CC_DIR /opt/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin
 ENV REAL_CC $CC_DIR/arm-linux-gnueabihf-gcc
